@@ -5,7 +5,7 @@ Para familiarizarte con los conceptos teoricos y practicos relacionados a las te
 ## Introducción ##
 
 1. [Introducción al patron "Modelo Vista Controlador (MVC)"](https://github.com/DiganmeGiovanni/SAPITO/wiki/Introducci%C3%B3n-al-patron-%22Modelo-Vista-Controlador-(MVC)%22)
-2. [Introducción a JSP |html, css, jsp| (VISTAS)](https://www.google.com).
+2. [Introducción a JSP |html, css, jsp| (VISTAS)](https://www.google.com.mx/?gfe_rd=cr&ei=DyrZVPinLeSR8Qfb8YCYAw#q=introduction+to+jsp).
 3. Introducción al framework Spring (Controlador).
 4. Agregar una vista al proyecto (Y configurar su respectivo controlador).
 5. Entendiendo los Controllers agregados (Y como usarlos apropiadamente).
