@@ -13,8 +13,8 @@ Para familiarizarte con los conceptos teoricos y practicos relacionados a las te
 
 ## Vistas y Controladores ##
 
-1. Controladores con spring
-2. Formularios en jsp
+1. Controladores con spring (Mas que un simple GET)
+2. Formularios con spring y jsp
 3. ...
 
 ## Modelo (Database and Hibernate)
