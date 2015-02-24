@@ -1,9 +1,9 @@
-A menudo es necesario recurrir a tablas para mostrar datos dentro de la aplicación, uno de los requerimientos clave es la capacidad de realizar busquedas, filtrado y ordenamientos a traes de loscampos de una tabla. Para entregar dicha funcionalidad se ha incluido [DataTables](http://www.datatables.net/) dentro de los recursos frontend de la aplicación.
+A menudo es necesario recurrir a tablas para mostrar datos dentro de la aplicación, uno de los requerimientos clave es la capacidad de realizar busquedas, filtrado y ordenamientos a traves de los campos de una tabla. Para entregar dicha funcionalidad se ha incluido [DataTables](http://www.datatables.net/) dentro de los recursos frontend de la aplicación.
 
 Para utilizar DataTables:
 
 ### Paso 1: Contar con una tabla con datos en la aplicación.
-Dentro de el archivo jsp debe existir una tabla con datos, a la cual le agregaremos el campo de busqueda mediante DataTables. Una tabla sencilla de ejemplo:
+Dentro de el archivo jsp debe existir una tabla con datos, a la cual le agregaremos el campo de busqueda mediante [DataTables](http://www.datatables.net/). Una tabla sencilla de ejemplo:
 
 ```html
 <table id="tclientes" class="table table-bordered table-hover table-striped table-responsive">
@@ -35,7 +35,7 @@ Dentro de el archivo jsp debe existir una tabla con datos, a la cual le agregare
 ```
 
 ### Paso 2: Incluir los archivos javascript y css necesarios
-Para poder utilizar DataTables, debemos incluir los siguientes archivos dentro del jsp en el cual se encuentra la tabla:
+Para poder utilizar [DataTables](http://www.datatables.net/), debemos incluir los siguientes archivos dentro del jsp en el cual se encuentra la tabla:
 
 ```html
 <!-- Datatables css -->
@@ -68,7 +68,7 @@ Whoala:
 ![DataTables sample](http://i.imgur.com/VUykicO.png?1)
 
 **NOTA:** <br/>
-*En mi caso ha sido necesario comentarizar los siguientes archivos (Por el momento):*
+*En mi caso ha sido necesario comentarizar la inclusión de los siguientes archivos (Por el momento y solo en caso de que los tengas, comentariza):*
 
 ```html
 <script src="${pageContext.request.contextPath}/resources/js/libs/morris.min.js"></script>
