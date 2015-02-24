@@ -30,3 +30,6 @@ Para familiarizarte con los conceptos teoricos y practicos relacionados a las te
 1. El sistema de login y la adminsitración de permisos
 2. ...
 
+## Ejemplos
+
+1. Agregar tablas con campo para busquedas (DataTables).
