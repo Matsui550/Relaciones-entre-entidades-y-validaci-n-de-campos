@@ -32,4 +32,4 @@ Para familiarizarte con los conceptos teoricos y practicos relacionados a las te
 
 ## Ejemplos
 
-1. Agregar tablas con campo para busquedas (DataTables).
+1. [Agregar tablas con campo para busquedas (DataTables)](https://github.com/DiganmeGiovanni/SAPITO/wiki/Agregar-tablas-con-campo-para-busquedas-%28DataTables%29).
