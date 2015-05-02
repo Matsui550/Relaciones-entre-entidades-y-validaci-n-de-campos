@@ -9,7 +9,6 @@ Para familiarizarte con los conceptos teoricos y practicos relacionados a las te
 3. Introducción al framework Spring (Controlador).
 4. Agregar una vista al proyecto (Y configurar su respectivo controlador).
 5. Entendiendo los Controllers agregados (Y como usarlos apropiadamente).
-6. ...
 
 ## Vistas y Controladores ##
 
@@ -39,6 +38,10 @@ Para familiarizarte con los conceptos teoricos y practicos relacionados a las te
 
 ## Ejemplos
 
+* Configuración del ambiente de desarrollo (Database, Glassfish, IDE ...)
+
 1. [Agregar tablas con campo para busquedas (DataTables)](https://github.com/DiganmeGiovanni/SAPITO/wiki/Agregar-tablas-con-campo-para-busquedas-%28DataTables%29).
 2. Mapeo de entidades java con la base de datos.
-3. Despliegue de información obtenida de la Database sobre las vistas con JSP
+3. Despliegue de información obtenida de la Database sobre las vistas con JSP.
+4. Paso de información entre Controllers y JSP
+5. Formularios con JSP, Spring y Hibernate.
