@@ -3,7 +3,7 @@ Un controlador puede hacer mas que enviarnos una simple vista, podemos utilizarl
 ## El objeto Model
 Cada controlador recibe como primer parametro un objeto de la clase ```Model```. Este objeto es sumamente util para enviar información al controlador mediante el método ```addAttribute```.
 
-### Agregando elmentos al model.
+### Agregando elementos al model.
 Como ejemplo. En el código del Controller agregamos diferentes elementos al model y le asignamos un nombre a cada elemento:
 ```java
 Cliente cliente = new Cliente();
