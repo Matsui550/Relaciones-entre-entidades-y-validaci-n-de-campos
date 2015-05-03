@@ -39,10 +39,10 @@ Para familiarizarte con los conceptos teoricos y practicos relacionados a las te
 ## Ejemplos
 
 * Configuración del ambiente de desarrollo (Database, Glassfish, IDE ...)
-* [Configurar el pool de conexiones Glassfish/PostgreSQL](https://github.com/DiganmeGiovanni/SAPITO/wiki/Configurar-el-Pool-de-conexiones)
+* [Configurar el pool de conexiones Glassfish/PostgreSQL](./Configurar-el-Pool-de-conexiones)
 
 1. [Agregar tablas con campo para busquedas (DataTables)](https://github.com/DiganmeGiovanni/SAPITO/wiki/Agregar-tablas-con-campo-para-busquedas-%28DataTables%29).
 2. [Mapeo de entidades java con la base de datos.](https://github.com/DiganmeGiovanni/SAPITO/wiki/Mapeo-de-entidades-java-con-la-base-de-datos)
 3. Despliegue de información obtenida de la Database sobre las vistas con JSP.
-4. Paso de información entre Controllers y JSP
+4. [Paso de información entre Controllers y JSP](./Paso-de-informaci%C3%B3n-entre-Controllers-y-Vistas-(JSP))
 5. Formularios con JSP, Spring y Hibernate.
