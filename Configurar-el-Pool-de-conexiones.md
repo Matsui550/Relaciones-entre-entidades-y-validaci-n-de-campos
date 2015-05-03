@@ -57,5 +57,5 @@ En la misma consola de administración nos dirigimos a la sección **Resources >
 
 ![JDBC Resource](http://i.imgur.com/qy3xsRG.png)
 
-y hacemos clic sobre el boton 'ok'. Con esto ya tenemos nuestro servidor configurado para acceder a la base de datos.
+y hacemos clic sobre el boton 'ok'. Con esto el servidor esta listo para acceder a la base de datos.
 
