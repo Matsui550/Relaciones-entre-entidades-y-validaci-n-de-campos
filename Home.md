@@ -36,8 +36,10 @@ Para familiarizarte con los conceptos teoricos y practicos relacionados a las te
 2. Validando formularios mediante Spring y JPA Validation.
 3. Solicitando información al servidor mediante AJAX con JQuery.
 
-1. Configuración del ambiente de desarrollo (Database, Glassfish, IDE ...)
-2. [Configurar el pool de conexiones Glassfish/PostgreSQL](./Configurar-el-Pool-de-conexiones)
+--- ---
+
+- Configuración del ambiente de desarrollo (Database, Glassfish, IDE ...)
+- [Configurar el pool de conexiones Glassfish/PostgreSQL](./Configurar-el-Pool-de-conexiones)
 
 ## Ejemplos
 
