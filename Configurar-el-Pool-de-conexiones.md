@@ -11,7 +11,7 @@ Para que nuestra aplicación (Desplegada en Glassfish 4.1) tenga acceso a nuestr
 ## Paso 1 | Proporcionar el Driver JDBC para PostgreSQL a Glassfish Server.
 Con el servidor en estado 'shutdown' descargamos el Driver desde [este enlace](https://jdbc.postgresql.org/download/postgresql-9.4-1201.jdbc4.jar).
 
-Debes colorcar el driver en la dirección de librerias de Glassfish, generalmente esta se encuentra en el home del usuario del sistema (windows o Linux) por ejemplo: ```/home/giovanni/glassfish-4.1/glassfish/lib``` en Linux o ```C:\\Users\Giovanni\glassfish-4.1/glassfish/lib``` en Windows. Asegurate de poner el Driver descargado en la ruta indicada para poder conectar a la base d datos.
+Debes colorcar el driver en la dirección de librerias de Glassfish, generalmente esta se encuentra en el home del usuario del sistema (windows o Linux) por ejemplo: ```/home/giovanni/glassfish-4.1/glassfish/lib``` en Linux o ```C:\\Users\Giovanni\glassfish-4.1/glassfish/lib``` en Windows. Asegurate de poner el Driver descargado en la ruta indicada para poder conectar a la base de datos.
 
 ## Paso 2 | Arrancar el servidor y entrar a la consola de administración.
 Puedes arrancar el servidor desde Netbeans (En la pestaña de servicios, en la sección 'Servidores' mediante un clic derecho y la opción 'start'):
