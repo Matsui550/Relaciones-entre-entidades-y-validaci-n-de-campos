@@ -90,7 +90,6 @@ public class Cliente implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @NotNull
     @Column(name = "ID")
     private Long id;
     
@@ -211,7 +210,6 @@ public class OrdenVenta implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @NotNull
     @Column(name = "ID")
     private Long id;
 
@@ -261,7 +259,6 @@ public class Factura implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @NotNull
     @Column(name = "ID")
     private Long id;
     
@@ -350,7 +347,6 @@ public class Cliente implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @NotNull
     @Column(name = "ID")
     private Long id;
     
@@ -702,7 +698,6 @@ public class OrdenVenta implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @NotNull
     @Column(name = "ID")
     private Long id;
 
@@ -850,7 +845,6 @@ public class Factura implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @NotNull
     @Column(name = "ID")
     private Long id;
     
