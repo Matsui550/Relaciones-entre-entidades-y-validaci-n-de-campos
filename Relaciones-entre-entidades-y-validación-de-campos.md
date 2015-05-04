@@ -11,10 +11,10 @@ Vamos a construir tres entidades, relacionarlas y asignar validaciones para vari
 
 Como se ha mostrado en ejemplos anteriores configuramos una entidad y sus campos mediante anotaciones ```@Entity```, ```@Table```, ```@Column```, ```@Id``` etc.
 
-En esta ocación, también vamos a poner restricciones a ciertos campos de nuestra entidad, por ejemplo, el campo de teléfono solo aceptara digitos y espacios, el email debera ser un email apropiado, el nombre de contacto solo admitirá letras, puntos y espacios y debe tener una longitud minima de 2 caracteres y máxima de 100, entre otras. **Para dichas validaciones utilizaremos las anotaciones:** ```@Pattern```, ```@Size``` y ```@Email```.
+En esta ocación, también vamos a poner restricciones a ciertos campos de nuestra entidad, por ejemplo, el campo de teléfono solo aceptará digitos y espacios, el email deberá ser un email apropiado, el nombre de contacto solo admitirá letras, puntos y espacios y debe tener una longitud minima de 2 caracteres y máxima de 100, entre otras. **Para dichas validaciones utilizaremos las anotaciones:** ```@Pattern```, ```@Size``` y ```@Email```.
 
 ### La anotación @Size
-Util para validar el tamaño de cadenas de texto, por ejemplo para validar que una cadena tenga entre 2 y 100 caracteres:
+Útil para validar el tamaño de cadenas de texto, por ejemplo para validar que una cadena tenga entre 2 y 100 caracteres:
 
 ```java
 @Size(min=2, max=100, message = "Debe tener entre 2 y 100 caracteres")
@@ -24,11 +24,11 @@ private String nombreContacto;
 
  * El parametro ```min``` indica la longitud minima aceptable.
  * El parametro ```max``` indica la longitud máxima aceptable.
- * El parametro ```message``` indica el mensaje de error que ocasionalmente se enviara al usuario cuando el campo no cumpla con el tamaño minimo o máximo (Posteriormente veremos como aprovechar este mensaje).
+ * El parametro ```message``` indica el mensaje de error que ocasionalmente se enviará al usuario cuando el campo no cumpla con el tamaño minimo o máximo (Posteriormente veremos como aprovechar este mensaje).
 
 ### La anotación @Pattern
 Util para validar que una cadena de texto utilizando expresiones regulares. En el paquete ```com.sapito.db.util``` existen las clases ```RExp``` y ```RExpErrors``` las cuales contienen algunas
-de las expresiones regulares mas comunes asi como mensajes de error para cuando no se cumplan dichas expresiones respectivamente.
+de **las expresiones regulares mas comunes** asi como **mensajes de error** para cuando no se cumplan dichas expresiones respectivamente.
 
 Ejemplo:
 ```java
@@ -38,7 +38,7 @@ private String campoX
 ```
  * En este ejemplo solo se admiten letras mayúsculas y se valida mediante la expresión regular "^[A-Z]+$"
 
-Para facilitar este tipo de tareas se recomienda utilizar las clases ```RExp``` y ```RExpErrors```. Si hay alguna expresión que utilices continuamente, puedes solicitar que se agregue a la clase.
+Para **facilitar este tipo de tareas** se recomienda utilizar las clases ```RExp``` y ```RExpErrors```. Si hay alguna expresión que utilices continuamente, puedes solicitar que se agregue a la clase.
 
 Ejemplo con las clases auxiliares:
 ```java
@@ -46,7 +46,7 @@ Ejemplo con las clases auxiliares:
 @Column(name = "NOMBRE")
 private String nombreContacto;
 ```
- * De esta manera el campo ```nombreContacto``` solo admitira letras(Mayúsculas o minusculas), letras acentuadas y puntos.
+ * De esta manera el campo ```nombreContacto``` solo admitirá letras(Mayúsculas o minusculas), letras acentuadas y puntos.
  * Cada expresión esta documentada en el código de la clase ```RExp```
 
 ### La anotación @Email
@@ -62,7 +62,7 @@ private String email;
  * La anotacion ```@NotNull``` indica que ese campo no puede quedar vacio.
 
 ### Combinando anotaciones para crear la entidad Cliente.
-Las anotacines pueden utilizarce indistintamente sobre un mismo campo. Con lo cual nuestra entidad ```Cliente``` quedaria de la siguiente forma:
+Las anotacines pueden utilizarce indistintamente sobre un mismo campo. Con lo cual nuestra entidad ```Cliente``` quedaría de la siguiente forma:
 
 ```java
 package com.sapito.db.entities;
@@ -181,3 +181,137 @@ public class Cliente implements Serializable
 
     // ... Setters & Getters
 }
+```
+
+### La entidad Orden_Venta.
+Utilizando anotaciones la entidad quedará de la siguiente forma:
+```java
+package com.sapito.db.entities;
+
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+/**
+ *
+ * @author giovanni
+ */
+@Entity
+@Table(name = "ORDEN_VENTA")
+public class OrdenVenta implements Serializable
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @NotNull
+    @Column(name = "ID")
+    private Long id;
+
+    @Column(name = "FECHA_PEDIDO")
+    private Date fechaPedido;
+    
+    @NotNull
+    @Column(name = "FECHA_ENTREGA")
+    private Date fechaEntrega;
+    
+    @NotNull
+    @Column(name = "MONTO")
+    private double monto;
+    
+    @Column(name = "FACTuRADA")
+    private boolean facturada;
+    
+    @Column(name = "DEPOSITO")
+    private boolean deposito;
+ 
+    // ... Setters & Getters
+}
+```
+
+### La entidad Factura
+De la siguiente forma:
+```java
+package com.sapito.db.entities;
+
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+/**
+ *
+ * @author giovanni
+ */
+@Entity
+@Table(name = "FACTURA")
+public class Factura implements Serializable
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @NotNull
+    @Column(name = "ID")
+    private Long id;
+    
+    @Column(name = "SUBTOTAL")
+    private double subTotal;
+    
+    @Column(name = "TOTAL")
+    private double total;
+    
+    @Column(name = "IVA")
+    private double IVA;
+
+    // Setters & Getters
+}
+```
+
+## Relaciones entre entidades.
+Ahora vamos a crear relaciones entre dichas entidades.
+
+### Cliente tiene muchas OrdenVenta
+Mediante la anotación ```@OneToMany``` en la entidad Cliente definimos su relacion (Un ```Cliente``` tienes muchas ```OrdenVenta```) con la entidad ```OrdenVenta```:
+
+```java
+@OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+private Collection<OrdenVenta> ordenesVenta;
+```
+
+ * El parametro ```mappedBy``` indica que en la entidad ```OrdenVenta``` hay un campo llamado ```cliente``` que almacena una referencia al cliente que posee la ```OrdenVenta```
+
+Definimos la relación también en la entidad ```OrdenVenta```:
+```java
+@JoinColumn(name = "ID_CLIENTE")
+@ManyToOne
+private Cliente cliente;
+```
+ * ```@JoinColumn(name = "ID_CLIENTE")``` Indica que la entidad utilizara una columna llamada ID_CLIENTE para almacenar una referencia al cliente al que pertenece la ```OrdenVenta```
+ * ```@ManyToOne``` Indica que muchas ```OrdenVenta``` pertenecen a un ```Cliente```.
+
+De esta forma queda definida la relación entre ```Cliente``` y ```OrdenVenta```
+
+### OrdenVenta tiene una Factura
+Definimos la relación en ```OrdenVenta```:
+```java
+@OneToOne
+@JoinColumn(name = "ORDEN_VENTA_ID")
+private Factura factura;
+```
+ * ```@JoinColumn``` Funciona de forma analoga a la del campo ```cliente```
+ * ```@OneToOne``` Indica que una ```Factura``` se asocia con una (Y solo una) ```OrdenVenta```
+
+De esta manera las relaciones entre las tres tablas ya estan definidas. Ahora debes hacer **Clean and Build** y ejecutar la aplicación para que hibernate se encargue de crear las tablas y sus relaciones en la base de datos.
+
+> **NOTA** Una vez que las entidades de tu modulo esten terminadas, debes notificar a tu lider para que este a su vez notifique a todos los demas lideres. En cuanto las entidades de todos los equipos esten listas, se inhabilitará el parametro que indica a hibernate que cree las tablas cada vez que se inicia la aplicación y se podra trabajar en el resto de requerimientos.
