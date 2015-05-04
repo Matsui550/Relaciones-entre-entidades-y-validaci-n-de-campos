@@ -282,7 +282,7 @@ public class Factura implements Serializable
 Ahora vamos a crear relaciones entre dichas entidades.
 
 ### Cliente tiene muchas OrdenVenta
-Mediante la anotación ```@OneToMany``` en la entidad Cliente definimos su relacion (Un ```Cliente``` tienes muchas ```OrdenVenta```) con la entidad ```OrdenVenta```:
+Mediante la anotación ```@OneToMany``` en la entidad Cliente definimos su relación (Un ```Cliente``` tiene muchas ```OrdenVenta```) con la entidad ```OrdenVenta```:
 
 ```java
 @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
@@ -315,3 +315,617 @@ private Factura factura;
 De esta manera las relaciones entre las tres tablas ya estan definidas. Ahora debes hacer **Clean and Build** y ejecutar la aplicación para que hibernate se encargue de crear las tablas y sus relaciones en la base de datos.
 
 > **NOTA** Una vez que las entidades de tu modulo esten terminadas, debes notificar a tu lider para que este a su vez notifique a todos los demas lideres. En cuanto las entidades de todos los equipos esten listas, se inhabilitará el parametro que indica a hibernate que cree las tablas cada vez que se inicia la aplicación y se podra trabajar en el resto de requerimientos.
+
+## El código completo:
+Para propositos de consulta. Dejo el código completo de las tres clases/entidades del ejemplo:
+
+La clase ```Cliente```
+```java
+package com.sapito.db.entities;
+
+import com.sapito.db.util.RExp;
+import com.sapito.db.util.RExpErrors;
+import java.io.Serializable;
+import java.util.Collection;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
+
+/**
+ *
+ * @author giovanni
+ */
+@Entity
+@Table(name = "CLIENTE")
+public class Cliente implements Serializable
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @NotNull
+    @Column(name = "ID")
+    private Long id;
+    
+    @NotNull
+    @Size(min=1, max=500, message = "El nombre de la instancia debe tener entre 1 y 500 caracteres")
+    @Column(name = "EMPRESA")
+    private String empresa;
+    
+    @Column(name = "SUCURSAL")
+    private String sucursal;
+    
+    @NotNull
+    @Size(min=12, max=13, message = "El RFC debe tener 12 o 13 caracteres")
+    @Pattern(regexp = RExp.letrasBasicasDigitos, message = RExpErrors.letrasBasicasDigitos)
+    @Column(name = "RFC")
+    private String rfc;
+    
+    @NotNull
+    @Size(min=2, max=100, message = "Debe tener entre 2 y 100 caracteres")
+    @Pattern(regexp = RExp.letrasAcentuadasPuntos, message = RExpErrors.letrasAcentuadasPuntos)
+    @Column(name = "NOMBRE")
+    private String nombreContacto;
+    
+    @NotNull
+    @Size(min=2, max=100, message = "Debe tener entre 2 y 100 caracteres")
+    @Pattern(regexp = RExp.letrasAcentuadasPuntos, message = RExpErrors.letrasAcentuadasPuntos)
+    @Column(name = "APELLIDO_PATERNO")
+    private String apellidoPaternoContacto;
+    
+    @NotNull
+    @Size(min=2, max=100, message = "Debe tener entre 2 y 100 caracteres")
+    @Pattern(regexp = RExp.letrasAcentuadasPuntos, message = RExpErrors.letrasAcentuadasPuntos)
+    @Column(name = "APELLIDO_MATERNO")
+    private String apellidoMaternoContacto;
+    
+    @NotNull
+    @Size(min=2, max=100, message = "Debe tener entre 2 y 100 caracteres")
+    @Pattern(regexp = RExp.letrasAcentuadasPuntos, message = RExpErrors.letrasAcentuadasPuntos)
+    @Column(name = "PAIS")
+    private String pais;
+    
+    @Column(name = "ESTADO")
+    private String estado;
+    
+    @Column(name = "MUNICIPIO")
+    private String municipio;
+    
+    @Column(name = "COLONIA")
+    private String colonia;
+    
+    @Column(name = "CP")
+    private int cp;
+    
+    @Column(name = "CALLE")
+    private String calle;
+
+    @Pattern(regexp = RExp.letrasBasicasDigitos, message = RExpErrors.letrasBasicasDigitos)
+    @Column(name = "NUMERO_EXTERIOR")
+    private String numeroE;
+    
+    @Column(name = "NUMERO_INTERIOR")
+    private String numeroI;
+    
+    @Pattern(regexp = RExp.digitosEspacios, message = RExpErrors.digitosEspacios)
+    @Column(name = "TELEFONO1")
+    private String telefono1;
+    
+    @Pattern(regexp = RExp.digitosEspacios, message = RExpErrors.digitosEspacios)
+    @Column(name = "EXTENSION1")
+    private String extension1;
+    
+    @Pattern(regexp = RExp.digitosEspacios, message = RExpErrors.digitosEspacios)
+    @Column(name = "TELEFONO2")
+    private String telefono2;
+    
+    @Pattern(regexp = RExp.digitosEspacios, message = RExpErrors.digitosEspacios)
+    @Column(name = "EXTENSION2")
+    private String extension2;
+    
+    @NotNull
+    @Email(message = "Ingrese una dirección de email valida")
+    @Column(name = "EMAIL")
+    private String email;
+    
+    @NotNull
+    @Column(name = "STATUS")
+    private boolean status;
+    
+
+/** *** *** *** *** *** *** **** *** *** *** *** *** *** */
+/** *** *** *** *** ***  RELACIONES  *** *** *** *** *** */
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    private Collection<OrdenVenta> ordenesVenta;
+    
+    
+    
+/** *** *** *** *** *** *** **** *** *** *** *** *** *** */
+/** *** *** *** *** *** *** **** *** *** *** *** *** *** */
+    
+
+    public Long getId()
+    {
+        return id;
+    }
+
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
+
+    public String getEmpresa()
+    {
+        return empresa;
+    }
+
+    public void setEmpresa(String empresa)
+    {
+        this.empresa = empresa;
+    }
+
+    public String getSucursal()
+    {
+        return sucursal;
+    }
+
+    public void setSucursal(String sucursal)
+    {
+        this.sucursal = sucursal;
+    }
+
+    public String getRfc()
+    {
+        return rfc;
+    }
+
+    public void setRfc(String rfc)
+    {
+        this.rfc = rfc;
+    }
+
+    public String getNombreContacto()
+    {
+        return nombreContacto;
+    }
+
+    public void setNombreContacto(String nombreContacto)
+    {
+        this.nombreContacto = nombreContacto;
+    }
+
+    public String getApellidoPaternoContacto()
+    {
+        return apellidoPaternoContacto;
+    }
+
+    public void setApellidoPaternoContacto(String apellidoPaternoContacto)
+    {
+        this.apellidoPaternoContacto = apellidoPaternoContacto;
+    }
+
+    public String getApellidoMaternoContacto()
+    {
+        return apellidoMaternoContacto;
+    }
+
+    public void setApellidoMaternoContacto(String apellidoMaternoContacto)
+    {
+        this.apellidoMaternoContacto = apellidoMaternoContacto;
+    }
+
+    public String getPais()
+    {
+        return pais;
+    }
+
+    public void setPais(String pais)
+    {
+        this.pais = pais;
+    }
+
+    public String getEstado()
+    {
+        return estado;
+    }
+
+    public void setEstado(String estado)
+    {
+        this.estado = estado;
+    }
+
+    public String getMunicipio()
+    {
+        return municipio;
+    }
+
+    public void setMunicipio(String municipio)
+    {
+        this.municipio = municipio;
+    }
+
+    public String getColonia()
+    {
+        return colonia;
+    }
+
+    public void setColonia(String colonia)
+    {
+        this.colonia = colonia;
+    }
+
+    public int getCp()
+    {
+        return cp;
+    }
+
+    public void setCp(int cp)
+    {
+        this.cp = cp;
+    }
+
+    public String getCalle()
+    {
+        return calle;
+    }
+
+    public void setCalle(String calle)
+    {
+        this.calle = calle;
+    }
+
+    public String getNumeroE()
+    {
+        return numeroE;
+    }
+
+    public void setNumeroE(String numeroE)
+    {
+        this.numeroE = numeroE;
+    }
+
+    public String getNumeroI()
+    {
+        return numeroI;
+    }
+
+    public void setNumeroI(String numeroI)
+    {
+        this.numeroI = numeroI;
+    }
+
+    public String getTelefono1()
+    {
+        return telefono1;
+    }
+
+    public void setTelefono1(String telefono1)
+    {
+        this.telefono1 = telefono1;
+    }
+
+    public String getExtension1()
+    {
+        return extension1;
+    }
+
+    public void setExtension1(String extension1)
+    {
+        this.extension1 = extension1;
+    }
+
+    public String getTelefono2()
+    {
+        return telefono2;
+    }
+
+    public void setTelefono2(String telefono2)
+    {
+        this.telefono2 = telefono2;
+    }
+
+    public String getExtension2()
+    {
+        return extension2;
+    }
+
+    public void setExtension2(String extension2)
+    {
+        this.extension2 = extension2;
+    }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
+
+    public boolean isStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(boolean status)
+    {
+        this.status = status;
+    }
+
+    public Collection<OrdenVenta> getOrdenesVenta()
+    {
+        return ordenesVenta;
+    }
+
+    public void setOrdenesVenta(Collection<OrdenVenta> ordenesVenta)
+    {
+        this.ordenesVenta = ordenesVenta;
+    }
+    
+}
+```
+
+La clase ```OrdenVenta```
+```java
+package com.sapito.db.entities;
+
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+/**
+ *
+ * @author giovanni
+ */
+@Entity
+@Table(name = "ORDEN_VENTA")
+public class OrdenVenta implements Serializable
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @NotNull
+    @Column(name = "ID")
+    private Long id;
+
+    @Column(name = "FECHA_PEDIDO")
+    private Date fechaPedido;
+    
+    @NotNull
+    @Column(name = "FECHA_ENTREGA")
+    private Date fechaEntrega;
+    
+    @NotNull
+    @Column(name = "MONTO")
+    private double monto;
+    
+    @Column(name = "FACTuRADA")
+    private boolean facturada;
+    
+    @Column(name = "DEPOSITO")
+    private boolean deposito;
+    
+/* *** *** *** *** *** *** *** *** *** *** *** ***/
+/* *** *** *** ***  RELACIONES *** *** *** *** ***/
+    
+    @JoinColumn(name = "ID_CLIENTE")
+    @ManyToOne
+    private Cliente cliente;
+    
+    @OneToOne
+    @JoinColumn(name = "ORDEN_VENTA_ID")
+    private Factura factura;
+    
+/* *** *** *** *** *** *** *** *** *** *** *** ***/
+/* *** *** *** *** *** *** *** *** *** *** *** ***/
+
+    
+    public Long getId()
+    {
+        return id;
+    }
+
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
+
+    public Date getFechaPedido()
+    {
+        return fechaPedido;
+    }
+
+    public void setFechaPedido(Date fechaPedido)
+    {
+        this.fechaPedido = fechaPedido;
+    }
+
+    public Date getFechaEntrega()
+    {
+        return fechaEntrega;
+    }
+
+    public void setFechaEntrega(Date fechaEntrega)
+    {
+        this.fechaEntrega = fechaEntrega;
+    }
+
+    public double getMonto()
+    {
+        return monto;
+    }
+
+    public void setMonto(double monto)
+    {
+        this.monto = monto;
+    }
+
+    public boolean isFacturada()
+    {
+        return facturada;
+    }
+
+    public void setFacturada(boolean facturada)
+    {
+        this.facturada = facturada;
+    }
+
+    public boolean isDeposito()
+    {
+        return deposito;
+    }
+
+    public void setDeposito(boolean deposito)
+    {
+        this.deposito = deposito;
+    }
+
+    public Cliente getCliente()
+    {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente)
+    {
+        this.cliente = cliente;
+    }
+
+    public Factura getFactura()
+    {
+        return factura;
+    }
+
+    public void setFactura(Factura factura)
+    {
+        this.factura = factura;
+    }
+    
+}
+```
+
+La clase ```Factura```
+```java
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sapito.db.entities;
+
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+/**
+ *
+ * @author giovanni
+ */
+@Entity
+@Table(name = "FACTURA")
+public class Factura implements Serializable
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @NotNull
+    @Column(name = "ID")
+    private Long id;
+    
+    @Column(name = "SUBTOTAL")
+    private double subTotal;
+    
+    @Column(name = "TOTAL")
+    private double total;
+    
+    @Column(name = "IVA")
+    private double IVA;
+    
+    
+/* *** *** *** *** *** *** *** *** *** *** *** ***/
+/* *** *** *** ***  RELACIONES *** *** *** *** ***/
+    
+    @OneToOne(mappedBy = "factura")
+    private OrdenVenta ordenVenta;
+    
+/* *** *** *** *** *** *** *** *** *** *** *** ***/
+/* *** *** *** *** *** *** *** *** *** *** *** ***/
+    
+
+    public Long getId()
+    {
+        return id;
+    }
+
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
+
+    public double getSubTotal()
+    {
+        return subTotal;
+    }
+
+    public void setSubTotal(double subTotal)
+    {
+        this.subTotal = subTotal;
+    }
+
+    public double getTotal()
+    {
+        return total;
+    }
+
+    public void setTotal(double total)
+    {
+        this.total = total;
+    }
+
+    public double getIVA()
+    {
+        return IVA;
+    }
+
+    public void setIVA(double IVA)
+    {
+        this.IVA = IVA;
+    }
+
+
+    public OrdenVenta getOrdenVenta()
+    {
+        return ordenVenta;
+    }
+
+    public void setOrdenVenta(OrdenVenta ordenVenta)
+    {
+        this.ordenVenta = ordenVenta;
+    }
+    
+    
+    
+}
+```
